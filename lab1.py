@@ -15,14 +15,14 @@ marks=input("Enter the marks:")   #Enter the marks
 while(marks!="EXIT"):   #run until EXIT
     if(marks.isdecimal()):    #if the string is a number
         if (int(marks)<0 or int(marks)>100):  #out of range condition
-            print("Invalid Input")
+            print("Invalid input")
             marks=input("Enter the marks:")
         else:                                #if the marks is in the range
             gd=grade(marks)        # function is called
             print("Your grade is:",gd)
             marks=input("Enter the marks:")
     else:
-        print("Invalid Input")
+        print("Invalid input")
         marks=input("Enter the marks:")
 
 
