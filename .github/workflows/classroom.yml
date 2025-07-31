@@ -1,11 +1,14 @@
 name: Autograding Tests
-'on':
-- push
-- repository_dispatch
+
+on:
+  push:
+  repository_dispatch:
+
 permissions:
   checks: write
   actions: read
   contents: read
+
 jobs:
   run-autograding-tests:
     runs-on: ubuntu-latest
@@ -13,39 +16,52 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-    - name: Grading1
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies (if any)
+      run: |
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+    - name: Grading1 - Expecting A
       id: grading1
       uses: classroom-resources/autograding-io-grader@v1
       with:
         test-name: Grading1
         setup-command: ''
-        command: print
+        command: python grade.py
         input: '95'
         expected-output: A
         comparison-method: contains
         timeout: 10
-    - name: Grading2
+
+    - name: Grading2 - Expecting D
       id: grading2
       uses: classroom-resources/autograding-io-grader@v1
       with:
         test-name: Grading2
         setup-command: ''
-        command: if
+        command: python grade.py
         input: '58'
         expected-output: D
         comparison-method: contains
         timeout: 10
-    - name: Grading3
+
+    - name: Grading3 - Expecting F
       id: grading3
       uses: classroom-resources/autograding-io-grader@v1
       with:
         test-name: Grading3
         setup-command: ''
-        command: while
+        command: python grade.py
         input: '39'
         expected-output: F
         comparison-method: contains
         timeout: 10
+
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
