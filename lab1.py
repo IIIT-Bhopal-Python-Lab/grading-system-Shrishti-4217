@@ -20,7 +20,7 @@ while(marks!="EXIT"):   #run until EXIT
         else:                                #if the marks is in the range
             gd=grade(marks)        # function is called
             print("Your grade is:",gd)
-            marks=input("Enter the marks:")
+            
     else:
         print("Invalid input")
         
