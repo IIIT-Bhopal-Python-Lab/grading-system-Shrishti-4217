@@ -23,7 +23,7 @@ while(marks!="EXIT"):   #run until EXIT
             marks=input("Enter the marks:")
     else:
         print("Invalid input")
-        marks=input("Enter the marks:")
+        
 
 
 
